@@ -35,6 +35,10 @@ npm run dev                         # server :3001 + Vite dashboard :5173 (hot r
 # or production-style, one port:
 npm run build && NODE_ENV=production node server/dist/index.js
 ```
+If `npm ci` hangs: the upstream `package-lock.json` resolves some tarballs from
+`registry.npmmirror.com`, which restricted networks block. Rewrite them (integrity hashes still apply):
+`sed -i 's#https://registry.npmmirror.com/#https://registry.npmjs.org/#g' package-lock.json`.
+
 Run long-lived servers in the background and poll `/api/auth/status` until it answers.
 `ENCRYPTION_KEY` encrypts stored provider keys — losing it makes them undecryptable.
 
