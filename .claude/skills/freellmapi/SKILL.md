@@ -119,6 +119,7 @@ Claude model families map to free models under Keys → Anthropic (`PUT /api/set
 | `X-Fallback-Detail` | per-hop timing; enable with `FALLBACK_DETAIL_HEADER=1` |
 | 401 | wrong/missing unified key (provider keys don't work here) |
 | 503 / "no models available" | no usable provider key, or all are on cooldown — check `/v1/models?execution_status=ready` |
+| `X-Fallback-Trail: … =timeout` on every hop | the host can't reach the provider (sandbox/firewall egress policy) — test with `curl https://api.groq.com/openai/v1/models` |
 | 413 `request_too_large` | raise `REQUEST_BODY_LIMIT_MB` |
 
 Per-request headers: `X-FreeLLM-Cache: on|off`, `X-FreeLLM-Compress: off|lossless|standard|aggressive`,
